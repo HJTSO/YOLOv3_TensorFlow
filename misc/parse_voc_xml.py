@@ -1,5 +1,15 @@
 # coding: utf-8
+"""
+voc_names.txt：标签名字。
 
+trainval.txt:存放用于训练的图片的名字，每行一个名字（不带后缀.jpg）。
+
+test.txt:存放用于验证的图片的名字，每行一个名字（不带后缀.jpg）。
+
+train.txt:存放用于训练的图片的绝对路径，每行一个路径。以及标注信息。
+
+val.txt:存放用于验证的图片的绝对路径，每行一个路径。以及标注信息。
+"""
 import xml.etree.ElementTree as ET
 import os
 
@@ -11,14 +21,13 @@ for line in f:
     names_dict[line] = cnt
     cnt += 1
 
-voc_07 = '/data/VOCdevkit/VOC2007'
-voc_12 = '/data/VOCdevkit/VOC2012'
+# voc_07 = '/data/VOCdevkit/VOC2007'
+voc_07 = '/Users/huangjintao/Desktop/image100/Yolo'
 
-anno_path = [os.path.join(voc_07, 'Annotations'), os.path.join(voc_12, 'Annotations')]
-img_path = [os.path.join(voc_07, 'JPEGImages'), os.path.join(voc_12, 'JPEGImages')]
+anno_path = [os.path.join(voc_07, 'Annotations')]
+img_path = [os.path.join(voc_07, 'JPEGImages')]
 
-trainval_path = [os.path.join(voc_07, 'ImageSets/Main/trainval.txt'),
-                 os.path.join(voc_12, 'ImageSets/Main/trainval.txt')]
+trainval_path = [os.path.join(voc_07, 'ImageSets/Main/trainval.txt')]
 test_path = [os.path.join(voc_07, 'ImageSets/Main/test.txt')]
 
 
@@ -59,6 +68,7 @@ def gen_test_txt(txt_path):
         for img_name in img_names:
             img_name = img_name.strip()
             xml_path = anno_path[i] + '/' + img_name + '.xml'
+            print(xml_path)
             objects = parse_xml(xml_path)
             if objects:
                 objects[0] = img_path[i] + '/' + img_name + '.jpg'
@@ -80,6 +90,7 @@ def gen_train_txt(txt_path):
         for img_name in img_names:
             img_name = img_name.strip()
             xml_path = anno_path[i] + '/' + img_name + '.xml'
+            print(xml_path)
             objects = parse_xml(xml_path)
             if objects:
                 objects[0] = img_path[i] + '/' + img_name + '.jpg'
@@ -91,6 +102,6 @@ def gen_train_txt(txt_path):
     f.close()
 
 
-gen_train_txt('train.txt')
-gen_test_txt('val.txt')
+gen_train_txt(os.path.join(voc_07, 'ImageSets/Main/train.txt'))
+gen_test_txt(os.path.join(voc_07, 'ImageSets/Main/val.txt'))
 
