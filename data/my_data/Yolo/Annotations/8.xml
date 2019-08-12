@@ -1,0 +1,26 @@
+<annotation>
+	<folder>image100</folder>
+	<filename>8.jpg</filename>
+	<path>/Users/liu/kouui/data/scale_LCD/デジタルヘルスメータ/image100/8.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>365</width>
+		<height>274</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>LCD</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>172</xmin>
+			<ymin>42</ymin>
+			<xmax>242</xmax>
+			<ymax>82</ymax>
+		</bndbox>
+	</object>
+</annotation>
