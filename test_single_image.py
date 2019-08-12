@@ -17,15 +17,15 @@ from model import yolov3
 parser = argparse.ArgumentParser(description="YOLO-V3 test single image test procedure.")
 parser.add_argument("input_image", type=str,
                     help="The path of the input image.")
-parser.add_argument("--anchor_path", type=str, default="./data/yolo_anchors.txt",
+parser.add_argument("--anchor_path", type=str, default="./data/LCD_anchors.txt",
                     help="The path of the anchor txt file.")
 parser.add_argument("--new_size", nargs='*', type=int, default=[416, 416],
                     help="Resize the input image with `new_size`, size format: [width, height]")
 parser.add_argument("--letterbox_resize", type=lambda x: (str(x).lower() == 'true'), default=True,
                     help="Whether to use the letterbox resize.")
-parser.add_argument("--class_name_path", type=str, default="./data/coco.names",
+parser.add_argument("--class_name_path", type=str, default="./data/LCD.names",
                     help="The path of the class names.")
-parser.add_argument("--restore_path", type=str, default="./data/darknet_weights/yolov3.ckpt",
+parser.add_argument("--restore_path", type=str, default="./checkpoint/best_model_Epoch_46_step_328_mAP_0.5809_loss_2.2215_lr_3e-05.ckpt",
                     help="The path of the weights to restore.")
 args = parser.parse_args()
 

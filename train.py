@@ -168,7 +168,7 @@ with tf.Session() as sess:
         # NOTE: this is just demo. You can set the conditions when to save the weights.
         if epoch % args.save_epoch == 0 and epoch > 0:
             if loss_total.average <= 2.:
-                saver_to_save.save(sess, args.save_dir + 'model-epoch_{}_step_{}_loss_{:.4f}_lr_{:.5g}'.format(epoch, int(__global_step), loss_total.average, __lr))
+                saver_to_save.save(sess, args.save_dir + 'model-epoch_{}_step_{}_loss_{:.4f}_lr_{:.5g}.ckpt'.format(epoch, int(__global_step), loss_total.average, __lr))
 
         # switch to validation dataset for evaluation
         if epoch % args.val_evaluation_epoch == 0 and epoch >= args.warm_up_epoch:
@@ -212,7 +212,7 @@ with tf.Session() as sess:
 
             if mAP > best_mAP:
                 best_mAP = mAP
-                saver_best.save(sess, args.save_dir + 'best_model_Epoch_{}_step_{}_mAP_{:.4f}_loss_{:.4f}_lr_{:.7g}'.format(
+                saver_best.save(sess, args.save_dir + 'best_model_Epoch_{}_step_{}_mAP_{:.4f}_loss_{:.4f}_lr_{:.7g}.ckpt'.format(
                                    epoch, int(__global_step), best_mAP, val_loss_total.average, __lr))
 
             writer.add_summary(make_summary('evaluation/val_mAP', mAP), global_step=epoch)
